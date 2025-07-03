@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class LibroController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Libro::with('autor')->get(), 200);
+        $query = Libro::with('autor');
+
+        if ($request->has('autor_id')) {
+            $query->where('autor_id', $request->autor_id);
+        }
+
+        return response()->json($query->get(), 200);
     }
 
     public function store(Request $request)
