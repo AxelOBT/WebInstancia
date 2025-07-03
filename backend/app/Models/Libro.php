@@ -18,3 +18,4 @@ class Libro extends Model
         return $this->belongsTo(Autor::class, 'autor_id');
     }
 }
+// modelos creaos
